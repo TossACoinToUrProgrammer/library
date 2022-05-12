@@ -1,11 +1,23 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { addBook } from "./redux/reducers/booksReducer";
+import { Routes, Route } from "react-router-dom";
+import { Navbar } from "./components/Navbar/Navbar";
+import { BooksPage } from "./pages/BooksPage";
 
-function App({ books, addBook }: any) {
+import { addBook, fetchBooks } from "./redux/reducers/booksReducer";
+
+function App({ books, addBook, fetchBooks }: any) {
+
+  useEffect(() => {
+    if (!books || !books.length) fetchBooks();
+  }, [books, fetchBooks]);
+
   return (
     <div className="App">
-      App
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<BooksPage />} />
+      </Routes>
     </div>
   );
 }
@@ -16,4 +28,4 @@ const mstp = (state: any) => {
   };
 };
 
-export default connect(mstp, { addBook })(App);
+export default connect(mstp, { addBook, fetchBooks })(App);
