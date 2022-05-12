@@ -1,6 +1,8 @@
-import React from 'react';
+import React from "react";
+import { connect } from "react-redux";
+import { addBook } from "./redux/reducers/booksReducer";
 
-function App() {
+function App({ books, addBook }: any) {
   return (
     <div className="App">
       App
@@ -8,4 +10,10 @@ function App() {
   );
 }
 
-export default App;
+const mstp = (state: any) => {
+  return {
+    books: state.books.books,
+  };
+};
+
+export default connect(mstp, { addBook })(App);
