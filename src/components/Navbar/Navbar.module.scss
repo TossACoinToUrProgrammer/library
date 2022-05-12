@@ -1,0 +1,26 @@
+.wrapper {
+  padding: 45px 0;
+}
+
+.links {
+  display: flex;
+  border-bottom: 4px solid lightgray;
+
+  .link:first-of-type {
+    margin-right: auto;
+  }
+}
+
+.link {
+  padding: 8px 20px 10px;
+  margin-bottom: -4px;
+  position: relative;
+  color: var(--primary);
+  font-size: 22px;
+  border-bottom: 4px solid lightgray;
+
+  &.active {
+    border-color: var(--secondary);
+    color: var(--secondary);
+  }
+}
