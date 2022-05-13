@@ -24,3 +24,17 @@
     color: var(--secondary);
   }
 }
+
+@media (max-width: 480px) {
+  .wrapper {
+    padding: 35px 0 5px;
+  }
+  .link {
+    white-space: nowrap;
+    padding: 8px 10px 10px;
+    font-size: 18px;
+  }
+  .links {
+    flex-wrap: wrap;
+  }
+}

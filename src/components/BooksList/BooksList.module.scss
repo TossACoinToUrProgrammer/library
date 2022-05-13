@@ -5,3 +5,9 @@
   grid-template-columns: repeat(auto-fit, 230px);
   grid-gap: 20px;
 }
+
+@media (max-width: 768px) {
+  .list {
+    justify-content: center;
+  }
+}

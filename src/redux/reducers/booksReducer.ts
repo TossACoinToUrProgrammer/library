@@ -91,6 +91,14 @@ const booksReducer = handleActions(
         ...updatedBookNumbers(state, newBooks),
       }
     },
+    [ActionTypes.ADD_BOOK]: (state: BooksState, { payload }: any) => {
+      const newBooks = state.books[0].id === payload.id ? state.books : [payload, ...state.books]
+      return {
+        ...state,
+        books: newBooks,
+        ...updatedBookNumbers(state, newBooks),
+      }
+    },
   },
   initialState
 )
