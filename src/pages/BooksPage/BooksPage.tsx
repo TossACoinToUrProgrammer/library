@@ -1,11 +1,11 @@
 import React, { useMemo } from "react"
 import { connect } from "react-redux"
 
-import { BooksList } from "../components/BooksList/BooksList"
-import { Container } from "../components/Container/Container"
-import Filters from "../components/Filters/Filters"
-import { IBook, IFilters } from "../types"
-import sortByField from "../utils/helpers/sortByField"
+import BooksList from "../../components/BooksList/BooksList"
+import { Container } from "../../components/Container/Container"
+import Filters from "../../components/Filters/Filters"
+import { IBook, IFilters } from "../../types"
+import sortByField from "../../utils/helpers/sortByField"
 import styles from "./BooksPage.module.scss"
 
 type BooksPageProps = {
@@ -14,7 +14,6 @@ type BooksPageProps = {
 }
 
 const BooksPage = ({ books, filters }: BooksPageProps) => {
-
   const filteredBooks = useMemo(() => {
     if (!books || !filters) return []
 

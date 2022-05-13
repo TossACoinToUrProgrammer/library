@@ -25,6 +25,7 @@ export const setFilters = createAction(ActionTypes.SET_FILTERS, (payload: IFilte
 const setBooks = createAction(ActionTypes.SET_BOOKS)
 const setAuthors = createAction(ActionTypes.SET_AUTHORS)
 const setCategories = createAction(ActionTypes.SET_CATEGORIES)
+const toggleWishlist = createAction(ActionTypes.ADD_TO_WISHLIST)
 
 const booksReducer = handleActions(
   {
@@ -55,6 +56,12 @@ const booksReducer = handleActions(
         filters: payload,
       }
     },
+    [ActionTypes.ADD_TO_WISHLIST]: (state: BooksState, { payload }: any) => {
+      return {
+        ...state,
+        books: state.books.map((book) => (book.id === payload ? { ...book, isFav: !book.isFav } : book)),
+      }
+    },
   },
   initialState
 )
@@ -66,6 +73,11 @@ export const fetchInitialProps = () => async (dispatch: Dispatch<any>) => {
   dispatch(setAuthors(fetchedAuthors))
   const fetchedCategories = await requests.getCategories()
   dispatch(setCategories(fetchedCategories))
+}
+
+export const addToWishlist = (id: string) => async (dispatch: Dispatch<any>) => {
+  const response = await requests.addToWishlistRequest(id)
+  if (response.status < 400) dispatch(toggleWishlist(id))
 }
 
 export default booksReducer

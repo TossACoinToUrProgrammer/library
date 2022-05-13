@@ -17,6 +17,7 @@ export interface IBook {
   pageCount: number
   shortDescription?: string
   longDescription?: string
+  isFav?: boolean
 }
 
 export interface IFilters {
@@ -27,6 +28,7 @@ export interface IFilters {
 
 export enum ActionTypes {
   ADD_BOOK = "ADD_BOOK",
+  ADD_TO_WISHLIST = "ADD_TO_WISHLIST",
   UPDATE_BOOK = "UPDATE_BOOK",
   DELETE_BOOK = "DELETE_BOOK",
   FETCH_BOOKS = "FETCH_BOOKS",

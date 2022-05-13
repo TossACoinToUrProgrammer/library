@@ -46,7 +46,12 @@ class BooksDAO {
   }
 
   updateBook(book: IBook) {
-    this.books.map((item) => (item.id === book.id ? book : item))
+    this.books = this.books.map((item) => (item.id === book.id ? book : item))
+    this._updateLocalStorage()
+  }
+
+  addToWishlist(id: string) {
+    this.books = this.books.map((book) => (book.id === id ? { ...book, isFav: !book.isFav } : book))
     this._updateLocalStorage()
   }
 }

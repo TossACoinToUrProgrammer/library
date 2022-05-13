@@ -2,7 +2,7 @@ import React, { useMemo, useState } from "react"
 import { connect } from "react-redux"
 
 import styles from "./Filters.module.scss"
-import { State } from "../../redux/reducers/rootReducer"
+import { RootState } from "../../redux/reducers/rootReducer"
 import { IFilters, IAuthor, ICategory } from "../../types"
 import cn from "../../utils/helpers/combineClassnames"
 import sortByField from "../../utils/helpers/sortByField"
@@ -132,7 +132,7 @@ const Filters = ({ authors, categories, filters, setFilters }: FiltersProps) => 
   )
 }
 
-const mstp = (state: State) => ({
+const mstp = (state: RootState) => ({
   authors: state.books.authors,
   categories: state.books.categories,
   filters: state.books.filters,
