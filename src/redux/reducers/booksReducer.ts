@@ -20,12 +20,12 @@ export type BooksState = typeof initialState
 
 export const addBook = createAction(ActionTypes.ADD_BOOK)
 export const updateBook = createAction(ActionTypes.UPDATE_BOOK)
-export const deleteBook = createAction(ActionTypes.DELETE_BOOK)
 export const setFilters = createAction(ActionTypes.SET_FILTERS, (payload: IFilters) => payload)
 const setBooks = createAction(ActionTypes.SET_BOOKS)
 const setAuthors = createAction(ActionTypes.SET_AUTHORS)
 const setCategories = createAction(ActionTypes.SET_CATEGORIES)
 const toggleWishlist = createAction(ActionTypes.ADD_TO_WISHLIST)
+const deleteBookAction = createAction(ActionTypes.DELETE_BOOK)
 
 const booksReducer = handleActions(
   {
@@ -62,6 +62,12 @@ const booksReducer = handleActions(
         books: state.books.map((book) => (book.id === payload ? { ...book, isFav: !book.isFav } : book)),
       }
     },
+    [ActionTypes.DELETE_BOOK]: (state: BooksState, { payload }: any) => {
+      return {
+        ...state,
+        books: state.books.filter((book) => book.id !== payload),
+      }
+    },
   },
   initialState
 )
@@ -78,6 +84,11 @@ export const fetchInitialProps = () => async (dispatch: Dispatch<any>) => {
 export const addToWishlist = (id: string) => async (dispatch: Dispatch<any>) => {
   const response = await requests.addToWishlistRequest(id)
   if (response.status < 400) dispatch(toggleWishlist(id))
+}
+
+export const deleteBook = (id: string) => async (dispatch: Dispatch<any>) => {
+  const response = await requests.deleteBook(id)
+  if (response.status < 400) dispatch(deleteBookAction(id))
 }
 
 export default booksReducer

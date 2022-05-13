@@ -20,7 +20,8 @@ export const addBook = async (book: IBook) => {
 }
 
 export const deleteBook = async (bookId: string) => {
-  return booksApi.deleteBook(bookId)
+  await booksApi.deleteBook(bookId)
+  return { status: 203 }
 }
 
 export const updateBook = async (book: IBook) => {

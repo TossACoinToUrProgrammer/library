@@ -9,9 +9,10 @@ import deleteSVG from "../../assets/icons/delete.svg"
 type CardProps = {
   book: IBook
   addToWishlist: () => void
+  deleteBook: () => void
 }
 
-export const Card = ({ book, addToWishlist }: CardProps) => {
+export const Card = ({ book, addToWishlist, deleteBook }: CardProps) => {
   return (
     <div className={styles.card}>
       <div className={styles.imageWrapper}>
@@ -31,7 +32,7 @@ export const Card = ({ book, addToWishlist }: CardProps) => {
           <button>
             <img src={editSVG} alt="" />
           </button>
-          <button>
+          <button onClick={deleteBook}>
             <img src={deleteSVG} alt="" />
           </button>
         </div>
