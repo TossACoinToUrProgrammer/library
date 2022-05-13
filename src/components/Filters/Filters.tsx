@@ -2,12 +2,14 @@ import React, { useMemo, useState } from "react"
 import { connect } from "react-redux"
 
 import styles from "./Filters.module.scss"
-import arrowSVG from "../../assets/icons/arrow-next-right.svg"
 import { State } from "../../redux/reducers/rootReducer"
 import { IFilters, IAuthor, ICategory } from "../../types"
 import cn from "../../utils/helpers/combineClassnames"
 import sortByField from "../../utils/helpers/sortByField"
 import { setFilters } from "../../redux/reducers/booksReducer"
+import arrowSVG from "../../assets/icons/arrow-next-right.svg"
+import sortPNG from "../../assets/icons/sort.png"
+import sortReversePNG from "../../assets/icons/sort-reverse.png"
 
 type FiltersProps = {
   authors: IAuthor[]
@@ -47,11 +49,28 @@ const Filters = ({ authors, categories, filters, setFilters }: FiltersProps) => 
     setFilters(newFilters)
   }
 
+  const sortClickHandler = (value: any) => {
+    setFilters({ ...filters, sort: value })
+  }
+
+  const resetFilters = () => {
+    setFilters({ ...filters, categories: [], authors: [] })
+  }
+
+  const resetSort = () => {
+    setFilters({ ...filters, sort: null })
+  }
+
   return (
     <div className={styles.stickyWrapper}>
       <div className={styles.filters}>
         <div className={styles.section}>
-          <div className={styles.sectionTitle}>Filters</div>
+          <div className={styles.sectionTitle}>
+            Filters
+            <span className={styles.reset} onClick={resetFilters}>
+              reset
+            </span>
+          </div>
           <div className={styles.list}>
             {filterLists.map((filter, index) => (
               <button className={styles.filterButton} key={filter.title} onClick={() => setCurrentFilterList(index)}>
@@ -59,12 +78,14 @@ const Filters = ({ authors, categories, filters, setFilters }: FiltersProps) => 
               </button>
             ))}
             <div className={cn(styles.drawer, currentFilterList !== null ? styles.drawerOpen : "")}>
-              <button className={styles.drawerCloseButton} onClick={() => setCurrentFilterList(null)}>
+              <div className={styles.drawerCloseButton} onClick={() => setCurrentFilterList(null)}>
                 <img src={arrowSVG} alt="" />
-              </button>
+              </div>
               {currentFilterList !== null && (
                 <>
-                  <div className={cn(styles.drawerTitle, styles.sectionTitle)}>{filterLists[currentFilterList].title}</div>
+                  <div className={cn(styles.drawerTitle, styles.sectionTitle)}>
+                    {filterLists[currentFilterList].title}
+                  </div>
                   <div className={styles.filtersList}>
                     {filterLists[currentFilterList].items.map((item) => (
                       <div
@@ -85,10 +106,25 @@ const Filters = ({ authors, categories, filters, setFilters }: FiltersProps) => 
           </div>
         </div>
         <div className={styles.section}>
-          <div className={styles.sectionTitle}>Sort By</div>
+          <div className={styles.sectionTitle}>
+            Sort By
+            <span className={styles.reset} onClick={resetSort}>
+              reset
+            </span>
+          </div>
           <div className={styles.list}>
-            <button className={styles.sortItem}>item</button>
-            <button className={styles.sortItem}>item</button>
+            <button
+              className={cn(styles.sortButton, filters.sort === 1 ? styles.activeSort : "")}
+              onClick={() => sortClickHandler(1)}
+            >
+              <img src={sortPNG} alt="" />
+            </button>
+            <button
+              className={cn(styles.sortButton, filters.sort === -1 ? styles.activeSort : "")}
+              onClick={() => sortClickHandler(-1)}
+            >
+              <img src={sortReversePNG} alt="" />
+            </button>
           </div>
         </div>
       </div>

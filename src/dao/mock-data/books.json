@@ -1028,6 +1028,7 @@
   },
 
   {
+    "id": "1617290262321",
     "title": "Portlets and Apache Portals",
     "pageCount": 500,
     "thumbnailUrl": "https://s3.amazonaws.com/AKIAJC5RLADLUMVRPFDQ.book-thumb-images/hepper.jpg",
@@ -1188,7 +1189,7 @@
     "title": "Android in Practice",
     "id": "9781935182924",
     "pageCount": 0,
-    "thumbnailUrl": "https://s3.amazonaws.com/AKIAJC5RLADLUMVRPFDQ.book-thumb-images/kaeppler.jpg",
+    "thumbnailUrl": "https://s3.amazonaws.com/AKIAJC5RLADLUMVRPFDQ.book-thumb-images/kabacoff.jpg",
     "authors": ["Jeremy Anderson", "Robi Sen", "Bernerd Allmon"],
     "categories": ["Mobile Technology"]
   },

@@ -27,8 +27,17 @@
   }
 
   .sectionTitle {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
     font-size: 22px;
     margin-bottom: 8px;
+
+    .reset {
+      font-size: 18px;
+      color: var(--secondary);
+      cursor: pointer;
+    }
   }
 
   .list {
@@ -36,7 +45,19 @@
     flex-direction: column;
   }
 
-  .sortItem {
+  .sortButton {
+    width: 35px;
+    height: 35px;
+    margin: 5px 0;
+
+    img {
+      max-height: 100%;
+      max-width: 100%;
+    }
+
+    &.activeSort {
+      background-color: skyblue;
+    }
   }
 
   .filterButton {
@@ -72,6 +93,7 @@
   transform: rotate(180deg);
   width: 15px;
   height: 15px;
+  cursor: pointer;
 }
 
 .drawerTitle {
