@@ -1,6 +1,6 @@
 import React from "react"
 import { Link, useLocation } from "react-router-dom"
-import cn from "../../utils/combineClassnames"
+import cn from "../../utils/helpers/combineClassnames"
 import { Container } from "../Container/Container"
 import styles from "./Navbar.module.scss"
 

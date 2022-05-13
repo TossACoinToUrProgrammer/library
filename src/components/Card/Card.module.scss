@@ -2,10 +2,10 @@
   padding: 15px;
   width: 230px;
   height: 430px;
-  border-radius: 20px;
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  cursor: pointer;
 }
 
 .imageWrapper {
@@ -24,6 +24,9 @@
 }
 
 .title {
+  font-family: "Yeseva One";
+  font-size: 18px;
+  margin-bottom: 5px;
 }
 
 .author {
