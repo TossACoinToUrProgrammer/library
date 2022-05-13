@@ -1,24 +1,23 @@
-import React, { useEffect } from "react"
+import React from "react"
 import { connect } from "react-redux"
 
 import { BooksList } from "../components/BooksList/BooksList"
 import { Container } from "../components/Container/Container"
-import { fetchBooks } from "../redux/reducers/booksReducer"
+import Filters from "../components/Filters/Filters"
 import { IBook } from "../types"
+import styles from "./BooksPage.module.scss"
 
 type BooksPageProps = {
   books?: IBook[]
-  fetchBooks: () => void
 }
 
-const BooksPage = ({ books, fetchBooks }: BooksPageProps) => {
-  useEffect(() => {
-    if (!books || !books.length) fetchBooks()
-  }, [books, fetchBooks])
-
+const BooksPage = ({ books }: BooksPageProps) => {
   return (
     <div>
-      <Container>{books && <BooksList books={books} />}</Container>
+      <Container className={styles.body}>
+        <div>{books && <BooksList books={books} />}</div>
+        <Filters />
+      </Container>
     </div>
   )
 }
@@ -29,4 +28,4 @@ const mstp = (state: any) => {
   }
 }
 
-export default connect(mstp, { fetchBooks })(BooksPage)
+export default connect(mstp, null)(BooksPage)

@@ -1,20 +1,28 @@
-import BooksDAO from "./dao/Dao";
-import { IBook } from "./types";
+import BooksDAO from "./dao/Dao"
+import { IBook } from "./types"
 
-const booksApi = new BooksDAO();
+const booksApi = new BooksDAO()
 
 export const getBooks = async () => {
-  return booksApi.getBooks();
-};
+  return booksApi.getBooks()
+}
+
+export const getCategories = async () => {
+  return booksApi.getCategories()
+}
+
+export const getAuthors = async () => {
+  return booksApi.getAuthors()
+}
 
 export const addBook = async (book: IBook) => {
-  return booksApi.addBook(book);
-};
+  return booksApi.addBook(book)
+}
 
 export const deleteBook = async (bookId: string) => {
-  return booksApi.deleteBook(bookId);
-};
+  return booksApi.deleteBook(bookId)
+}
 
 export const updateBook = async (book: IBook) => {
-  return booksApi.updateBook(book);
-};
+  return booksApi.updateBook(book)
+}

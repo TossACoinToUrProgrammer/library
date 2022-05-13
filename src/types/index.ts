@@ -1,12 +1,22 @@
+export interface IAuthor {
+  name: string
+  books: number
+}
+
+export interface ICategory {
+  title: string
+  books: number
+}
+
 export interface IBook {
-  id: string;
-  title: string;
-  authors: string[];
-  categories: string[];
-  thumbnailUrl: string;
-  pageCount: number;
-  shortDescription?: string;
-  longDescription?: string;
+  id: string
+  title: string
+  authors: string[]
+  categories: string[]
+  thumbnailUrl: string
+  pageCount: number
+  shortDescription?: string
+  longDescription?: string
 }
 
 export enum ActionTypes {
@@ -15,22 +25,24 @@ export enum ActionTypes {
   DELETE_BOOK = "DELETE_BOOK",
   FETCH_BOOKS = "FETCH_BOOKS",
   SET_BOOKS = "SET_BOOKS",
+  SET_AUTHORS = "SET_AUTHORS",
+  SET_CATEGORIES = "SET_CATEGORIES",
 }
 
 //ActionType(AT)
 interface AddBookAT {
-  type: ActionTypes.ADD_BOOK;
-  payload: IBook;
+  type: ActionTypes.ADD_BOOK
+  payload: IBook
 }
 
 interface UpdateBookAT {
-  type: ActionTypes.UPDATE_BOOK;
-  payload: IBook;
+  type: ActionTypes.UPDATE_BOOK
+  payload: IBook
 }
 
 interface DeleteBookAT {
-  type: ActionTypes.DELETE_BOOK;
-  payload: string;
+  type: ActionTypes.DELETE_BOOK
+  payload: string
 }
 
-export type Action = AddBookAT | UpdateBookAT | DeleteBookAT;
+export type Action = AddBookAT | UpdateBookAT | DeleteBookAT
