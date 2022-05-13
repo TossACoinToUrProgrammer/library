@@ -26,7 +26,8 @@ export const deleteBook = async (bookId: string) => {
 }
 
 export const updateBook = async (book: IBook) => {
-  return booksApi.updateBook(book)
+  await booksApi.updateBook(book)
+  return { status: 203 }
 }
 
 export const addToWishlistRequest = async (id: string) => {

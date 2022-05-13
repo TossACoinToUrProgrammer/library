@@ -1,4 +1,6 @@
 import React from "react"
+import { useNavigate } from "react-router-dom"
+
 import { IBook } from "../../types"
 import styles from "./Card.module.scss"
 import heartThinSVG from "../../assets/icons/heart-thin.svg"
@@ -13,6 +15,7 @@ type CardProps = {
 }
 
 export const Card = ({ book, addToWishlist, deleteBook }: CardProps) => {
+  const navigate = useNavigate()
   return (
     <div className={styles.card}>
       <div className={styles.imageWrapper}>
@@ -33,7 +36,7 @@ export const Card = ({ book, addToWishlist, deleteBook }: CardProps) => {
           <button onClick={addToWishlist}>
             <img src={book.isFav ? heartSVG : heartThinSVG} alt="" />
           </button>
-          <button>
+          <button onClick={() => navigate(`/edit/${book.id}`)}>
             <img src={editSVG} alt="" />
           </button>
           <button onClick={deleteBook}>

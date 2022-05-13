@@ -18,7 +18,6 @@ const initialState = {
 
 export type BooksState = typeof initialState
 
-export const updateBook = createAction(ActionTypes.UPDATE_BOOK)
 export const setFilters = createAction(ActionTypes.SET_FILTERS, (payload: IFilters) => payload)
 const addBookAction = createAction(ActionTypes.ADD_BOOK)
 const setBooks = createAction(ActionTypes.SET_BOOKS)
@@ -26,6 +25,20 @@ const setAuthors = createAction(ActionTypes.SET_AUTHORS)
 const setCategories = createAction(ActionTypes.SET_CATEGORIES)
 const toggleWishlist = createAction(ActionTypes.ADD_TO_WISHLIST)
 const deleteBookAction = createAction(ActionTypes.DELETE_BOOK)
+const updateBookAction = createAction(ActionTypes.UPDATE_BOOK)
+
+const updatedBookNumbers = (state: BooksState, books: IBook[]) => {
+  return {
+    categories: state.categories.map((category) => ({
+      title: category.title,
+      books: getBooksNumberBy(books, "categories", category.title),
+    })),
+    authors: state.authors.map((author) => ({
+      name: author.name,
+      books: getBooksNumberBy(books, "authors", author.name),
+    })),
+  }
+}
 
 const booksReducer = handleActions(
   {
@@ -63,9 +76,19 @@ const booksReducer = handleActions(
       }
     },
     [ActionTypes.DELETE_BOOK]: (state: BooksState, { payload }: any) => {
+      const newBooks = state.books.filter((book) => book.id !== payload)
       return {
         ...state,
-        books: state.books.filter((book) => book.id !== payload),
+        books: newBooks,
+        ...updatedBookNumbers(state, newBooks),
+      }
+    },
+    [ActionTypes.UPDATE_BOOK]: (state: BooksState, { payload }: any) => {
+      const newBooks = state.books.map((item) => (item.id === payload.id ? payload : item))
+      return {
+        ...state,
+        books: newBooks,
+        ...updatedBookNumbers(state, newBooks),
       }
     },
   },
@@ -94,6 +117,11 @@ export const deleteBook = (id: string) => async (dispatch: Dispatch<any>) => {
 export const addBook = (book: IBook) => async (dispatch: Dispatch<any>) => {
   const response = await requests.addBook(book)
   if (response.status < 400) dispatch(addBookAction(book))
+}
+
+export const updateBook = (book: IBook) => async (dispatch: Dispatch<any>) => {
+  const response = await requests.updateBook(book)
+  if (response.status < 400) dispatch(updateBookAction(book))
 }
 
 export default booksReducer

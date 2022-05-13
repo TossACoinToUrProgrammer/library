@@ -13,9 +13,10 @@ type AddBookPageProps = {
 }
 
 const AddBookPage = ({ authors, categories, addBook }: AddBookPageProps) => {
+  const onSubmit = (values: any) => addBook({ ...values, id: new Date().getTime() + "" })
   return (
     <Container>
-      {authors && categories && <Form authors={authors} categories={categories} onSubmit={addBook} />}
+      {authors && categories && <Form title="Add Book" authors={authors} categories={categories} onSubmit={onSubmit} />}
     </Container>
   )
 }

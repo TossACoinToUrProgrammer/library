@@ -5,6 +5,7 @@ import { Routes, Route } from "react-router-dom"
 import { Navbar } from "./components/Navbar/Navbar"
 import AddBookPage from "./pages/AddBookPage/AddBookPage"
 import BooksPage from "./pages/BooksPage/BooksPage"
+import EditPage from "./pages/EditPage/EditPage"
 import Wishlist from "./pages/Wishlist/Wishlist"
 import { fetchInitialProps } from "./redux/reducers/booksReducer"
 
@@ -21,6 +22,8 @@ function App({ fetchInitialProps }: { fetchInitialProps: () => void }) {
         <Route path="/wishlist" element={<Wishlist />} />
         {/* @ts-ignore */}
         <Route path="/add-book" element={<AddBookPage />} />
+        {/* @ts-ignore */}
+        <Route path="/edit/:bookId" element={<EditPage />} />
       </Routes>
     </div>
   )

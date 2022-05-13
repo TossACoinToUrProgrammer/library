@@ -15,10 +15,12 @@ const ValidationSchema = Yup.object().shape({
 type FormProps = {
   authors: IAuthor[]
   categories: ICategory[]
-  onSubmit: (book: IBook) => void
+  onSubmit: (book: any) => void
+  title: string
+  initialValues?: IBook
 }
 
-export const Form = ({ authors, categories, onSubmit }: FormProps) => {
+export const Form = ({ title, authors, categories, onSubmit, initialValues }: FormProps) => {
   const authorsOptions = useMemo(() => {
     return sortByField(
       authors.map((author) => ({ label: author.name, value: author.name })),
@@ -34,13 +36,15 @@ export const Form = ({ authors, categories, onSubmit }: FormProps) => {
   }, [categories])
   return (
     <Formik
-      initialValues={{ title: "", authors: [], categories: [], thumbnailUrl: "", shortDescription: "" }}
+      initialValues={
+        initialValues || { title: "", authors: [], categories: [], thumbnailUrl: "", shortDescription: "" }
+      }
       validationSchema={ValidationSchema}
-      onSubmit={(values) => onSubmit({ ...values, id: new Date().getTime() + "" })}
+      onSubmit={onSubmit}
     >
       {({ values, errors, touched, handleChange, handleBlur, handleSubmit, isSubmitting }) => (
         <form onSubmit={handleSubmit} className={styles.form}>
-          <div className={styles.title}>Add Book</div>
+          <div className={styles.title}>{title}</div>
 
           <label htmlFor="title">Title:</label>
           <input
