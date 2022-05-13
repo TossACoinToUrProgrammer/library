@@ -14,7 +14,7 @@ export interface IBook {
   authors: string[]
   categories: string[]
   thumbnailUrl: string
-  pageCount: number
+  pageCount?: number
   shortDescription?: string
   longDescription?: string
   isFav?: boolean

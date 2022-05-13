@@ -16,7 +16,8 @@ export const getAuthors = async () => {
 }
 
 export const addBook = async (book: IBook) => {
-  return booksApi.addBook(book)
+  await booksApi.addBook(book)
+  return { status: 203 }
 }
 
 export const deleteBook = async (bookId: string) => {

@@ -18,9 +18,9 @@ const initialState = {
 
 export type BooksState = typeof initialState
 
-export const addBook = createAction(ActionTypes.ADD_BOOK)
 export const updateBook = createAction(ActionTypes.UPDATE_BOOK)
 export const setFilters = createAction(ActionTypes.SET_FILTERS, (payload: IFilters) => payload)
+const addBookAction = createAction(ActionTypes.ADD_BOOK)
 const setBooks = createAction(ActionTypes.SET_BOOKS)
 const setAuthors = createAction(ActionTypes.SET_AUTHORS)
 const setCategories = createAction(ActionTypes.SET_CATEGORIES)
@@ -89,6 +89,11 @@ export const addToWishlist = (id: string) => async (dispatch: Dispatch<any>) => 
 export const deleteBook = (id: string) => async (dispatch: Dispatch<any>) => {
   const response = await requests.deleteBook(id)
   if (response.status < 400) dispatch(deleteBookAction(id))
+}
+
+export const addBook = (book: IBook) => async (dispatch: Dispatch<any>) => {
+  const response = await requests.addBook(book)
+  if (response.status < 400) dispatch(addBookAction(book))
 }
 
 export default booksReducer

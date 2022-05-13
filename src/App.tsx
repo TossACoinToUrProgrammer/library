@@ -3,6 +3,7 @@ import { connect } from "react-redux"
 import { Routes, Route } from "react-router-dom"
 
 import { Navbar } from "./components/Navbar/Navbar"
+import AddBookPage from "./pages/AddBookPage/AddBookPage"
 import BooksPage from "./pages/BooksPage/BooksPage"
 import Wishlist from "./pages/Wishlist/Wishlist"
 import { fetchInitialProps } from "./redux/reducers/booksReducer"
@@ -18,6 +19,8 @@ function App({ fetchInitialProps }: { fetchInitialProps: () => void }) {
       <Routes>
         <Route path="/" element={<BooksPage />} />
         <Route path="/wishlist" element={<Wishlist />} />
+        {/* @ts-ignore */}
+        <Route path="/add-book" element={<AddBookPage />} />
       </Routes>
     </div>
   )

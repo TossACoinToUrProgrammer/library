@@ -1,5 +1,3 @@
-Wishlist - 40мин
-
 CRUD - 1ч
 
 Responsive - 1ч

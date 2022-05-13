@@ -36,7 +36,7 @@ class BooksDAO {
   }
 
   addBook(book: IBook) {
-    this.books.push(book)
+    this.books.unshift(book)
     this._updateLocalStorage()
   }
 

@@ -25,6 +25,10 @@ export const Card = ({ book, addToWishlist, deleteBook }: CardProps) => {
       <div className={styles.modal}>
         <u>Description:</u>
         {(book.shortDescription || book.longDescription)?.slice(0, 200)}
+        <br />
+        <br />
+        <u>Categories:</u>
+        {book.categories.join(", ")?.slice(0, 100)}
         <div className={styles.toolbar}>
           <button onClick={addToWishlist}>
             <img src={book.isFav ? heartSVG : heartThinSVG} alt="" />

@@ -1,0 +1,53 @@
+.form {
+  display: flex;
+  flex-direction: column;
+
+  label {
+    padding-top: 10px;
+  }
+}
+
+.field {
+  min-height: 37px;
+  width: 300px;
+  max-width: 100%;
+  margin: 5px 0;
+  font-family: "Poppins";
+  font-size: 16px;
+
+  [class*="-control"] {
+    border-radius: 0;
+    border: 1px solid black !important;
+    min-height: 37px;
+    width: 300px;
+    max-width: 100%;
+  }
+}
+
+input.field,
+.field.textArea {
+  padding: 0 7px;
+}
+
+.textArea {
+  height: 60px;
+}
+
+.error {
+  color: red;
+}
+
+.submit {
+  width: 300px;
+  max-width: 100%;
+  margin: 15px 0;
+  font-family: "Poppins";
+  font-size: 16px;
+  height: 37px;
+  cursor: pointer;
+}
+
+.title {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
