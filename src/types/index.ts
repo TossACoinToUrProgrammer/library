@@ -19,6 +19,12 @@ export interface IBook {
   longDescription?: string
 }
 
+export interface IFilters {
+  categories: string[]
+  authors: string[]
+  sort: 1 | -1 | null
+}
+
 export enum ActionTypes {
   ADD_BOOK = "ADD_BOOK",
   UPDATE_BOOK = "UPDATE_BOOK",
@@ -27,6 +33,7 @@ export enum ActionTypes {
   SET_BOOKS = "SET_BOOKS",
   SET_AUTHORS = "SET_AUTHORS",
   SET_CATEGORIES = "SET_CATEGORIES",
+  SET_FILTERS = "SET_FILTERS",
 }
 
 //ActionType(AT)

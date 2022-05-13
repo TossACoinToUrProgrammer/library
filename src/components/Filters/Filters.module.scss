@@ -1,31 +1,20 @@
-.filters {
-  position: sticky;
+.stickyWrapper {
   height: calc(100vh - 20px);
-  overflow: auto;
+  position: sticky;
+  top: 10px;
+  overflow: hidden;
+}
+
+.filters {
+  position: relative;
   background-color: white;
   padding: 20px 10px;
-  top: 10px;
 
   button {
     border: none;
     background: none;
     cursor: pointer;
     font-family: "Poppins";
-  }
-
-  .clearButton {
-    padding: 3px 7px;
-    margin-bottom: 15px;
-    display: flex;
-    align-items: center;
-    font-size: 20px;
-    border: 1px solid var(--primary);
-
-    img {
-      margin-left: 10px;
-      width: 20px;
-      height: 20px;
-    }
   }
 
   .section {
@@ -42,15 +31,15 @@
     margin-bottom: 8px;
   }
 
-  .drawer {
-  }
-
   .list {
     display: flex;
     flex-direction: column;
   }
 
-  .filterItem {
+  .sortItem {
+  }
+
+  .filterButton {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -62,7 +51,53 @@
       height: 12px;
     }
   }
+}
 
-  .sortItem {
+.drawer {
+  position: absolute;
+  width: 100%;
+  left: 100%;
+  top: 0;
+  padding: 20px 10px;
+  background-color: white;
+  transition: none;
+}
+
+.drawerOpen {
+  left: 0;
+  transition: all 0.4s ease;
+}
+
+.drawerCloseButton {
+  transform: rotate(180deg);
+  width: 15px;
+  height: 15px;
+}
+
+.drawerTitle {
+  margin-bottom: 10px;
+  border-bottom: 2px solid lightgray;
+}
+
+.filtersList {
+  max-height: calc(100vh - 300px);
+  overflow: auto;
+}
+
+.filter {
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+  padding: 2px;
+  margin: 2px 0;
+
+  span {
+    text-align: center;
+    min-width: 20px;
+  }
+
+  &.activeFilter {
+    background-color: var(--secondary);
+    color: white;
   }
 }
